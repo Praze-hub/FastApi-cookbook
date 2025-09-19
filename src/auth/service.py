@@ -8,9 +8,9 @@ class UserService:
     async def get_user_by_email(self, email:str, session: AsyncSession):
         statement = select(User).where(User.email == email)
         
-        result = await session.exec(statement)
+        result = await session.execute(statement)
         
-        user= result.first()
+        user: User | None = result.scalar_one_or_none()
         
         return user
     
