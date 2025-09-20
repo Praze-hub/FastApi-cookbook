@@ -4,7 +4,7 @@ from src.db.main import get_session
 from .schemas import UserCreateModel, UserModel, UserLoginModel
 from .service import UserService
 from sqlmodel.ext.asyncio.session import AsyncSession
-from .utils import create_access_token, decode, verify_password, generate_passwd_hash
+from .utils import create_access_token, verify_password, generate_passwd_hash
 from fastapi.responses import JSONResponse
 from .models import User
 
