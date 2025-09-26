@@ -2,7 +2,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from .schemas import BookCreateModel, BookUpdateModel
 from sqlmodel import select, desc
 from datetime import datetime
-from .models import Book
+from src.db.models import Book
 
 class BookService:
     async def get_all_books(self, session:AsyncSession):
@@ -35,6 +35,7 @@ class BookService:
         
     
     async def get_book(self, book_uid:str, session:AsyncSession):
+        book_uid = book_uid.strip()
         statement = select(Book).where(Book.uid == book_uid)
         """
         Here we are using the where method, 
