@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker
 async_engine = AsyncEngine(
     create_engine(
     url=Config.DATABASE_URL,
-    echo=True #Helps with tracing every transaction that occurs
+    # echo=True #Helps with tracing every transaction that occurs
 )
 )
 
