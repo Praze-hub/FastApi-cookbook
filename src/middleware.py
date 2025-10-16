@@ -13,7 +13,7 @@ def register_middleware(app:FastAPI):
     
     
     @app.middleware('http')
-    async def custom_login(request:Request, call_next):
+    async def custom_logging(request:Request, call_next):
         start_time = time.time()
         # print('before', start_time)
         
@@ -27,18 +27,18 @@ def register_middleware(app:FastAPI):
         
         return response
     
-    @app.middleware('http')
-    async def authorization(request: Request, call_next):
-        if not 'Authorization' in request.headers:
-            return JSONResponse(
-                content={
-                    "message": "Not Authenticated",
-                    "resolution": "Please provide the right credentials to proceed"
-                },
-                status_code= status.HTTP_401_UNAUTHORIZED
-            )
-            response = await call_next(request)
-            return response
+    # @app.middleware('http')
+    # async def authorization(request: Request, call_next):
+    #     if not 'Authorization' in request.headers:
+    #         return JSONResponse(
+    #             content={
+    #                 "message": "Not Authenticated",
+    #                 "resolution": "Please provide the right credentials to proceed"
+    #             },
+    #             status_code= status.HTTP_401_UNAUTHORIZED
+    #         )
+    #         response = await call_next(request)
+    #         return response
         
     app.add_middleware(CORSMiddleware,
                        allow_origins =["*"],
